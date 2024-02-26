@@ -1,6 +1,6 @@
 import express from 'express';
 import connect from './schemas/index.js';
-import Roouter from './routes/router.js';
+import Router from './routes/router.js'; // 이름을 확인하고 필요에 따라 수정
 
 const app = express();
 const PORT = 3000;
@@ -11,14 +11,9 @@ connect();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const router = express.Router();
-
-router.get('/', (req, res) => {
-  return res.json({ message: 'Hi!' });
-});
-
-app.use('/api', [router,Roouter]);
+// '/user' 경로에 대한 라우트를 등록합니다.
+app.use('/user', Router);
 
 app.listen(PORT, () => {
-  console.log(PORT, '포트로 서버가 열렸어요!');
+  console.log(`${PORT} 포트로 서버가 열렸어요!`);
 });

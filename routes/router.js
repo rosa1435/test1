@@ -1,11 +1,11 @@
 import express from 'express';
-import member from '../schemas/products.schema.js'
+import member from '../schemas/users.schema.js'
 
 const router = express.Router();
 
 
 // 회원작성 API (DB에 등록하기위해서 만들었습니다.)
-router.post('/products', async (req, res) => {
+router.post('/', async (req, res) => {
     const {name, email, pw} = req.body;
 
     const newmenber = new member({ // 새 회원 등록
@@ -21,7 +21,7 @@ router.post('/products', async (req, res) => {
 
 
 // 회원목록 조회 API
-router.get('/products', async (req, res) => {
+router.get('/', async (req, res) => {
     const members = await member.find().exec();
     // 회원 정보를 직접 배열로 반환합니다.
     const modifiedMembers = members.map(member => ({
@@ -34,9 +34,9 @@ router.get('/products', async (req, res) => {
 });
 
 // 회원 상세조회 API
-router.get('/products/:productId', async (req, res) => {
-    const { productId } = req.params;
-    const oneMember = await member.findById(productId).exec();
+router.get('/:userId', async (req, res) => {
+    const { userId } = req.params;
+    const oneMember = await member.findById(userId).exec();
 
     const modifiedMember = {
         userid: oneMember._id, // "_id"를 "userId"로 매핑
