@@ -22,7 +22,7 @@ router.post('/products', async (req, res) => {
 
 // 회원목록 조회 API
 router.get('/products', async (req, res) => {
-    const menbers = await memberlist.find().exec();
+    const menbers = await member.find().exec();
     return res.status(200).json({ menbers });
 });
 
@@ -30,7 +30,7 @@ router.get('/products', async (req, res) => {
 router.get('/products/:productId', async (req, res) => {
     const { productId } = req.params;
 
-    const onemenber = await memberlist.findById(productId).exec();
+    const onemenber = await member.findById(productId).exec();
 
 
 
