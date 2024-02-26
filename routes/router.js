@@ -4,7 +4,7 @@ import member from '../schemas/products.schema.js'
 const router = express.Router();
 
 
-// 회원작성 API
+// 회원작성 API (DB에 등록하기위해서 만들었습니다.)
 router.post('/products', async (req, res) => {
     const {name, email, pw} = req.body;
 
