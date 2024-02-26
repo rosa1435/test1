@@ -22,19 +22,31 @@ router.post('/products', async (req, res) => {
 
 // 회원목록 조회 API
 router.get('/products', async (req, res) => {
-    const menbers = await member.find().exec();
-    return res.status(200).json({ menbers });
+    const members = await member.find().exec();
+    // 회원 정보를 직접 배열로 반환합니다.
+    const modifiedMembers = members.map(member => ({
+        userid: member._id, // "_id"를 "userId"로 매핑
+        name: member.name,
+        email: member.email,
+        pw: member.pw,
+    }));
+    res.status(200).json(modifiedMembers); // JSON Object 배열로 응답
 });
 
 // 회원 상세조회 API
 router.get('/products/:productId', async (req, res) => {
     const { productId } = req.params;
+    const oneMember = await member.findById(productId).exec();
 
-    const onemenber = await member.findById(productId).exec();
+    const modifiedMember = {
+        userid: oneMember._id, // "_id"를 "userId"로 매핑
+        name: oneMember.name,
+        email: oneMember.email,
+        pw: oneMember.pw,
+    };
 
-
-
-
-    return res.status(200).json(onemenber);
+    res.status(200).json(modifiedMember); // JSON Object로 응답
 });
+
+
 export default router;
