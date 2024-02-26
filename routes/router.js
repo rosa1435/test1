@@ -1,17 +1,17 @@
 import express from 'express';
-import memberlist from '../schemas/products.schema.js'
+import member from '../schemas/products.schema.js'
 
 const router = express.Router();
 
 
 // 회원작성 API
 router.post('/products', async (req, res) => {
-    const {name, email, password} = req.body;
+    const {name, email, pw} = req.body;
 
-    const newmenber = new member({ // 새 상품 등록
+    const newmenber = new member({ // 새 회원 등록
         name,
         email,
-        password,
+        pw,
     });
 
     const savedMenber = await newmenber.save();
@@ -22,7 +22,7 @@ router.post('/products', async (req, res) => {
 
 // 회원목록 조회 API
 router.get('/products', async (req, res) => {
-    const menbers = await member.find().exec();
+    const menbers = await memberlist.find().exec();
     return res.status(200).json({ menbers });
 });
 
@@ -30,7 +30,7 @@ router.get('/products', async (req, res) => {
 router.get('/products/:productId', async (req, res) => {
     const { productId } = req.params;
 
-    const onemenber = await member.findById(productId).exec();
+    const onemenber = await memberlist.findById(productId).exec();
 
 
 

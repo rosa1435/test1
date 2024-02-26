@@ -9,7 +9,7 @@ const memberSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  password: { // 비밀번호
+  pw: { // 비밀번호
     type: String,
     required: true,
   }
