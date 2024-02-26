@@ -1,0 +1,13 @@
+{
+  "name": "test1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/rosa1435/test1.git",
+  "author": "rosa1435 <158241447+rosa1435@users.noreply.github.com>",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.2.0"
+  }
+}
